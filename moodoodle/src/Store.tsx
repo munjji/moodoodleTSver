@@ -1,11 +1,13 @@
 import React from 'react'
+import { Address, Restaurant } from './model/restraurant'
 
-const store:React.FC = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+interface OwnProps {
+  info: Restaurant
+  changeAddress(address: Address): void
 }
 
-export default store
+const Store: React.FC<OwnProps> = ({ info }) => {
+  return <div>{info.name}</div>
+}
+
+export default Store

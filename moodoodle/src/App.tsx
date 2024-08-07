@@ -1,18 +1,38 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from 'react'
+import './App.css'
+import Store from './Store'
+import { Address, Restaurant } from './model/restraurant'
+import BestMenu from './BestMenu'
 
-let data = {
-  name: "누나네 식당",
+const data: Restaurant = {
+  name: '먼지네 식당',
   category: 'westorn',
   address: {
     city: 'incheoi',
     detail: 'somewhere',
-    zipcode : 235435,
+    zipCode: 235435,
   },
-  menu: [{ name: "rose pasta", price: 2000, category: 'PASTA' }, {name : 'garlic steak', price : 3000, category: 'STEAK'}]
+  menu: [
+    { name: 'rose pasta', price: 2000, category: 'PASTA' },
+    { name: 'garlic steak', price: 3000, category: 'STEAK' },
+  ],
 }
 const App: React.FC = () => {
-  return <div className="App"></div>;
-};
+  // <> 제네릭 문법
+  const [myRestaurant, setMyRestaurant] = useState<Restaurant>(data)
+  const changeAddress = (address: Address) => {
+    setMyRestaurant({ ...myRestaurant, address })
+  }
+  const showBestMenuName = (name: string) => {
+    return name
+  }
 
-export default App;
+  return (
+    <div className="App">
+      <Store info={myRestaurant} changeAddress={changeAddress} />
+      <BestMenu name="불고기 피자" category="피자" price={1000} showBestMenuName={showBestMenuName} />
+    </div>
+  )
+}
+
+export default App
