@@ -31,9 +31,9 @@ export type AddressWithoutZip = Omit<Address, 'zipCode'>
 
 export type RestaurantOnlyCategory = Pick<Restaurant, 'category'>
 
-export type ApiResponse<T> {
-  data: T[],
-  totalPage: number,
+export type ApiResponse<T> = {
+  data: T[]
+  totalPage: number
   page: number
 }
 
